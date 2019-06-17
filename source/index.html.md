@@ -19,7 +19,17 @@ search: true
 
 # Introduction
 
-Welcome to the Service socket API! You can use our API to access Service socket API endpoints,
+Welcome to the Service socket API! You can use our API to access Service socket API endpoints
+
+
+
+use flow with reference for connect to service: 
+
+ - <a href="https://stackoverflow.com/questions/25081188/sending-socket-request-from-client-ios-android-to-sails-js-server">https://stackoverflow.com/questions/25081188/sending-socket-request-from-client-ios-android-to-sails-js-server</a> 
+
+ - <a href="https://www.logisticinfotech.com/blog/realtime-communication-using-socketio-sailsjs">https://www.logisticinfotech.com/blog/realtime-communication-using-socketio-sailsjs/</a> 
+
+ - <a href="https://stackoverflow.com/questions/46514939/problems-subscribing-to-a-room-socket-with-socket-io-client-swift-and-swift-s?rq=1">https://stackoverflow.com/questions/46514939/problems-subscribing-to-a-room-socket-with-socket-io-client-swift-and-swift-s?rq=1</a>
 
 # Authentication
 
@@ -56,6 +66,27 @@ let api = kittn.authorize("meowmeowmeow");
 <aside class="notice">
 You must replace <code>Appsecret</code> with your personal Appsecret key.
 </aside>
+
+# Connection
+
+## Config
+
+use flow with reference for connect to service:  
+
+ - <a href="https://stackoverflow.com/questions/25081188/sending-socket-request-from-client-ios-android-to-sails-js-server">https://stackoverflow.com/questions/25081188/sending-socket-request-from-client-ios-android-to-sails-js-server</a> 
+
+ - <a href="https://www.logisticinfotech.com/blog/realtime-communication-using-socketio-sailsjs">https://www.logisticinfotech.com/blog/realtime-communication-using-socketio-sailsjs/</a> 
+
+ - <a href="https://stackoverflow.com/questions/46514939/problems-subscribing-to-a-room-socket-with-socket-io-client-swift-and-swift-s?rq=1">https://stackoverflow.com/questions/46514939/problems-subscribing-to-a-room-socket-with-socket-io-client-swift-and-swift-s?rq=1</a>
+
+
+### Query Parameters
+
+| Parameter                | Type   | Default | Description                     |
+| ------------------------ | ------ | ------- | ------------------------------- |
+| url                      | String | ''      | Url for connection              |
+| key                      | String | ''      | Your Appsecret                  |
+| \_\_sails_io_sdk_version | String | ''      | version sdk sails socket client |
 
 # Channel
 
@@ -96,7 +127,6 @@ let kittens = api.kittens.get();
 "Error":null
 ```
 
-This endpoint retrieves all kittens.
 
 ### HTTP Request
 
@@ -106,16 +136,15 @@ This endpoint retrieves all kittens.
 
 ### Query Parameters
 
-| Parameter  | Default | Description                   |
-| ---------- | ------- | ----------------------------- |
-| channel    | null    | Channel you want to subsribe. |
-| app_secret | null    | your App_secret .             |
+| Parameter | Type                   | Default | Description                   |
+| --------- | ---------------------- | ------- | ----------------------------- |
+| channel   | String or Array String | Guest   | Channel you want to subsribe. |
 
 <aside class="success">
 Remember — a happy send is an authenticated !
 </aside>
 
-# Chat
+# Push Message
 
 ## send
 
@@ -139,7 +168,7 @@ This endpoint send to channel, event include data.
 
 ### HTTP Request
 
-`POST /chat/send`
+`POST /wssv/send`
 
 ### Header
 
@@ -151,11 +180,11 @@ Authorization key=Appsecret
 
 ### Query Parameters
 
-| Parameter | Default | Description              |
-| --------- | ------- | ------------------------ |
-| channel   | null    | channel you want to send |
-| event     | null    | event you want to send   |
-| data      | null    | data you want to send    |
+| Parameter | Type                   | Default | Description              |
+| --------- | ---------------------- | ------- | ------------------------ |
+| channel   | String or Array String | null    | channel you want to send |
+| event     | String                 | Message | event you want to send   |
+| data      | Full body              | null    | data you want to send    |
 
 <aside class="success">
 Remember — a happy send is an authenticated!
@@ -183,7 +212,7 @@ This endpoint send multi message to multi channel, event include data.
 
 ### HTTP Request
 
-`POST /chat/send-multi`
+`POST /wssv/send-multi`
 
 ### Header
 
@@ -195,17 +224,17 @@ Authorization key=Appsecret
 
 ### Query Parameters
 
-| Parameter | Default | Description                    |
-| --------- | ------- | ------------------------------ |
-| body      | []      | array message you want to send |
+| Parameter | Type  | Default | Description                    |
+| --------- | ----- | ------- | ------------------------------ |
+| body      | Array | []      | array message you want to send |
 
 ### Message Parameters
 
-| Parameter | Default | Description              |
-| --------- | ------- | ------------------------ |
-| channel   | null    | channel you want to send |
-| event     | null    | event you want to send   |
-| data      | null    | data you want to send    |
+| Parameter | Type                   | Default | Description              |
+| --------- | ---------------------- | ------- | ------------------------ |
+| channel   | String or Array String | null    | channel you want to send |
+| event     | String                 | Message | event you want to send   |
+| data      | Full body              |         | data you want to send    |
 
 <aside class="success">
 Remember — a happy send is an authenticated!
